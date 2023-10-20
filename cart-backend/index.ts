@@ -7,6 +7,7 @@ import hpp from 'hpp'
 import rateLimit from 'express-rate-limit'
 import xssFilterMiddleware from './src/middlewares/xssFilter'
 import cors from 'cors'
+import morgan from 'morgan'
 
 dotenv.config()
 
@@ -22,6 +23,8 @@ app.use(
     origin: '*'
   })
 )
+
+app.use(morgan('dev'))
 
 app.use(
   rateLimit({
