@@ -1,20 +1,18 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 const cartItemSchema = z.object({
   id: z.number().optional(),
-  name: z.string(),
+  title: z.string(),
   price: z.number(),
-  quantity: z.number(),
-});
-
-const cartItemsSchema = z.array(cartItemSchema);
+  quantity: z.number()
+})
 
 export const cartUpdateCartSchema = z.object({
-  cartItems: cartItemsSchema,
-});
+  cartItems: z.array(cartItemSchema)
+})
 
 export const addItemToCartSchema = z.object({
-  name: z.string(),
+  title: z.string(),
   price: z.number(),
-  quantity: z.number(),
-});
+  quantity: z.number()
+})
