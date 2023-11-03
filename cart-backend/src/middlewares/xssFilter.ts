@@ -1,21 +1,26 @@
 import { Request, Response, NextFunction } from 'express'
-import xssFilters from 'xss-filters'
+import xss from 'xss'
 
 function xssFilterMiddleware(req: Request, res: Response, next: NextFunction) {
+  function sanitize(obj: any) {
+    if (typeof obj === 'object' && obj !== null) {
+      for (const key in obj) {
+        obj[key] = sanitize(obj[key])
+      }
+    } else if (typeof obj === 'string') {
+      obj = xss(obj)
+    }
+    return obj
+  }
+
   if (req.query) {
     for (const key in req.query) {
-      if (req.query.hasOwnProperty(key)) {
-        req.query[key] = xssFilters.uriQueryInHTMLData(req.query[key] as string)
-      }
+      req.query[key] = xss(req.query[key] as string)
     }
   }
 
   if (req.body) {
-    for (const key in req.body) {
-      if (req.body.hasOwnProperty(key)) {
-        req.body[key] = xssFilters.inHTMLData(req.body[key])
-      }
-    }
+    req.body = sanitize(req.body)
   }
 
   next()
