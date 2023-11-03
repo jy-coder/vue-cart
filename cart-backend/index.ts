@@ -5,9 +5,10 @@ import { json } from 'body-parser'
 import cartRoute from './src/routes/cartRoute'
 import hpp from 'hpp'
 import rateLimit from 'express-rate-limit'
-import xssFilterMiddleware from './src/middlewares/xssFilter'
 import cors from 'cors'
 import morgan from 'morgan'
+import authRoute from './src/routes/authRoute'
+import xssFilterMiddleware from './src/middlewares/xssFilter'
 
 dotenv.config()
 
@@ -34,8 +35,8 @@ app.use(
 )
 app.use(xssFilterMiddleware)
 
-app.use('/cart', cartRoute)
-
+app.use('/api/v1/cart', cartRoute)
+app.use('/api/v1/auth', authRoute)
 // app.get("/", (req: Request, res: Response) => {
 //   res.send("Welcome to Express & TypeScript Server");
 // });
