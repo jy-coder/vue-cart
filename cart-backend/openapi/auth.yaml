@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: Auth API
+  version: 1.0.0
+tags:
+  - name: Auth
+paths:
+  /api/v1/auth/register:
+    post:
+      summary: Register  new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schema/auth.yaml#/schemas/UserRegistration'
+
+  /api/v1/auth/login:
+    post:
+      summary: Login user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schema/auth.yaml#/schemas/UserLogin'
+
+components:
+  $ref: './schema/auth.yaml'

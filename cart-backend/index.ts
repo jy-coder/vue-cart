@@ -9,11 +9,12 @@ import cors from 'cors'
 import morgan from 'morgan'
 import authRoute from './src/routes/authRoute'
 import xssFilterMiddleware from './src/middlewares/xssFilter'
+import swaggerDocs from './src/swagger/swagger'
 
 dotenv.config()
 
-const app: Application = express()
-const port = process.env.PORT || 8000
+const app = express()
+const port: number = Number(process.env.PORT) || 8000
 
 app.use(json())
 app.use(hpp())
@@ -45,4 +46,5 @@ app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Server is Fire at http://localhost:${port}`)
+  swaggerDocs(app, port)
 })
