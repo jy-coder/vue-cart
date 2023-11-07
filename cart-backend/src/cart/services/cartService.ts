@@ -1,4 +1,4 @@
-import db from '../database/db'
+import db from '../../database/db'
 import { Cart } from '../models/cartModel'
 import { CartItem } from '../models/cartItemModel'
 

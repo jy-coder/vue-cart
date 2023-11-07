@@ -1,6 +1,6 @@
 import { getMockReq, getMockRes } from '@jest-mock/express'
-import { Cart } from '../../models/cartModel'
-import CartController from '../../controller/cart/cartController'
+import { Cart } from '../../cart/models/cartModel'
+import CartController from '../../cart/controller/cartController'
 import { cartUpdateCartSchema } from '../../validation/cartValidation'
 
 jest.mock('../../database/db.ts', () => {

@@ -1,4 +1,4 @@
-### To create migration
+### Useful Knex Migration Command
 
 ```
 npm run knex migrate:make rename-cartitem-title
@@ -9,5 +9,5 @@ npm run knex seed:make initial
 
 npm run knex seed:run
 
-npm run knex migrate:down 20231102175244_add-user-role.ts
+npm run knex migrate:down 20231105103400_add-auth.ts
 ```

@@ -1,7 +1,8 @@
 import express from 'express'
-import asyncHandler from '../utils/asyncHandler'
-import CartController from '../controller/cart/cartController'
-import CartItemController from '../controller/cart/cartItemController'
+import asyncHandler from '../../utils/asyncHandler'
+import CartController from '../controller/cartController'
+import CartItemController from '../controller/cartItemController'
+import { validateAuth } from '../../auth/middleware/authMiddleware'
 
 const cartRoute = express.Router()
 
@@ -9,7 +10,7 @@ const cartController = new CartController()
 
 const cartItemController = new CartItemController()
 
-cartRoute.get('/:userId', asyncHandler(cartController.getCart))
+cartRoute.get('/:userId', validateAuth, asyncHandler(cartController.getCart))
 
 cartRoute.post('/:userId', asyncHandler(cartController.createCart))
 

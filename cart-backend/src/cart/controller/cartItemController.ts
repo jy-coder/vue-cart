@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import CartService from '../../services/cartService'
+import CartService from '../services/cartService'
 import { addItemToCartSchema } from '../../validation/cartValidation'
 
 class CartItemController {
